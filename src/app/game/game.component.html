@@ -1,0 +1,7 @@
+<div class="game container">
+    <div class="cards-row" *ngFor="let row of cards">
+        <div class="cards-column" *ngFor="let card of row">
+            <app-card [number]="card.number"></app-card>
+        </div>
+    </div>
+</div>
