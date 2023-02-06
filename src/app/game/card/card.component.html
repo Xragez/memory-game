@@ -1,0 +1,5 @@
+<div class="game-card" (click)="reveal()" [ngClass]="{'hidden' : this.cardData.state === 'matched'}">
+    <div class="image-container" *ngIf="this.cardData.state === 'flipped'">
+        <img class="image" alt="card" src="../../../assets/img/{{this.cardData.number}}.png">
+    </div>
+</div>

@@ -1,7 +1,10 @@
 <div class="game container">
     <div class="cards-row" *ngFor="let row of cards">
         <div class="cards-column" *ngFor="let card of row">
-            <app-card [number]="card.number"></app-card>
+            <app-card
+                [cardData]="card"
+                (revealEvent)="onCardReveal($event)">
+            </app-card>
         </div>
     </div>
 </div>

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './game/card/card.component';
 
 @NgModule({
   declarations: [
