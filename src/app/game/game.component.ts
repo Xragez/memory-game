@@ -5,18 +5,12 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit{
-  cardRows = 4
-  cardColumns = 5
-  numberOfCards: number
+  cardRows = 4;
+  cardColumns = 5;
+  numberOfPairs = 10;
+  revealedPairs = 0;
   cards: Card[][] = []
   revealedCards: Card[] = []
-
-
-  constructor() {
-    this.numberOfCards = this.cardColumns * this.cardRows;
-
-
-  }
 
   generateCards(): Card[][] {
     let id = 0;
@@ -39,20 +33,15 @@ export class GameComponent implements OnInit{
   }
 
   generateNumbers(): number[] {
-    let numberList: number[] = [...Array(this.numberOfCards/2).keys()]
-    numberList.push(...Array(this.numberOfCards/2).keys())
+    let numberList: number[] = [...Array(this.numberOfPairs).keys()]
+    numberList.push(...Array(this.numberOfPairs).keys())
     return numberList.sort((a, b) => 0.5 - Math.random());
-  }
-
-  startGame(): void {
-
   }
 
   onCardReveal(card: Card): void {
     if (card.state === 'default' && this.revealedCards.length < 2 && !this.revealedCards.includes(card)) {
       card.state = 'flipped';
       this.revealedCards.push(card)
-      console.log(this.revealedCards)
 
       if (this.revealedCards.length > 1) {
         this.checkCards(this.revealedCards[0], this.revealedCards[1])
@@ -65,25 +54,19 @@ export class GameComponent implements OnInit{
 
   checkCards(card1: Card, card2: Card): void {
     setTimeout(() => {
-      const state = card1.number === card2.number ? 'matched' : 'default';
-      card1.state = card2.state = state;
+      if (card1.number === card2.number) {
+        card1.state = card2.state = 'matched';
+        this.revealedPairs += 1;
+      } else {
+        card1.state = card2.state = 'default';
+      }
+
       this.revealedCards = []
     }, 1000)
   }
 
   ngOnInit(): void {
     this.cards = this.generateCards();
-  }
-
-  private getCard(id: number): Card {
-    for (let row of this.cards) {
-      for (let card of row) {
-        if (card.id === id) {
-          return card;
-        }
-      }
-    }
-    return this.cards[0][0];
   }
 }
 

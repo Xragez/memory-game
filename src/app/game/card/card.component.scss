@@ -7,6 +7,17 @@
     font-size: 2rem;
     background-color: #D4B483;
     border-radius: 8px;
+    transform-style: preserve-3d;
+
+    .back {
+        transform: rotateY(0deg);
+        backface-visibility: hidden;
+    }
+
+    .front {
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+    }
 
     .image-container {
         margin: 8px;
@@ -17,8 +28,4 @@
             border-radius: 8px;
         }
     }
-}
-
-.hidden {
-    visibility: hidden;
 }
