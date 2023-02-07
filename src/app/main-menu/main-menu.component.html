@@ -11,6 +11,20 @@
       class="menu-item btn btn-outline-dark">
       Settings
     </button>
+    <button 
+      *ngIf="!isLoggedIn"
+      type="button"
+      class="menu-item btn btn-outline-dark"
+      (click)="openLogInForm()">
+      Log In
+    </button>
+    <button
+      *ngIf="isLoggedIn"
+      type="button"
+      class="menu-item btn btn-outline-dark"
+      (click)="logout()">
+      Log Out
+    </button>
   </div>
 </div>
 
