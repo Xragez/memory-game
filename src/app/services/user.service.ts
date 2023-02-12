@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
 import User from '../models/user.model';
 
 @Injectable({
@@ -23,15 +24,30 @@ export class UserService {
     return this.usersRef.update(key, value);
   }
 
-  isUserInDb(email: string | any): boolean {
-    this.usersRef.valueChanges().subscribe(list => {
-      var usersList = list;
-      var user = usersList.find(u => u.email === email);
-      console.log("User is already in DB");
-      return true;
+  isUserInDb(email: string | any): void {
+    const users = this.usersRef.valueChanges().forEach(user => {
+      if (!(user.length === 0)) {
+        console.log(user);
+        let found = false;
+        for (let i = 0; i < user.length; i++) {
+          if (user[i].email === email) {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          var userDB = new User();
+          userDB.email = email;
+          this.create(userDB);
+        }
+        
+      } else {
+        var userDB = new User();
+        userDB.email = email;
+        this.create(userDB);
+      }
     });
-    console.log("User is not in DB");
-    return false;
   }
 
 }

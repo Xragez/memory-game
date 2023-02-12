@@ -25,15 +25,16 @@ export class AuthService {
 
   AuthLogin(provider: any) {
     return this.fireauth.signInWithPopup(provider).then((result) => {
-      console.log('You have been successfully logged in!');
       localStorage.setItem("login", "true");
       const user = result.user;
-      if (!this.userService.isUserInDb(user?.email)) {
-        var dbUser = new User();
-        dbUser.email = user?.email;
-        console.log(dbUser);
-        this.userService.create(dbUser);
-      }
+      // if (!this.userService.isUserInDb(user?.email)) {
+      //   var dbUser = new User();
+      //   dbUser.email = user?.email;
+      //   console.log(dbUser);
+      //   this.userService.create(dbUser);
+      // }
+      this.userService.isUserInDb(user?.email);
+      console.log('You have been successfully logged in!');
       this.router.navigate(['']);
     }).catch((error) => {
       console.log(error.message);
