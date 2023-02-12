@@ -9,8 +9,10 @@ import { GameComponent } from './game/game.component';
 import { CardComponent } from './game/card/card.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+// import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 
@@ -28,7 +30,7 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'memory-game'),
-    AngularFirestoreModule
+    AngularFireDatabaseModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
