@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import User from '../models/user.model';
 
 @Injectable({
@@ -11,9 +12,15 @@ export class UserService {
   private dbPath = '/users';
 
   usersRef: AngularFireList<User>;
+  users: Observable<any>;
 
   constructor(private db: AngularFireDatabase) {
     this.usersRef = db.list(this.dbPath);
+    this.users = this.usersRef.snapshotChanges().pipe(
+      map(changes => 
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
   }
 
   create(user: User): any {
@@ -25,12 +32,12 @@ export class UserService {
   }
 
   isUserInDb(email: string | any): void {
-    const users = this.usersRef.valueChanges().forEach(user => {
-      if (!(user.length === 0)) {
-        console.log(user);
+    this.usersRef.valueChanges().forEach(users => {
+      if (!(users.length === 0)) {
+        console.log(users);
         let found = false;
-        for (let i = 0; i < user.length; i++) {
-          if (user[i].email === email) {
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].email === email) {
             found = true;
             break;
           }
