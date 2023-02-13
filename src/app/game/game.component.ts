@@ -5,9 +5,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit{
-  cardRows = 4;
-  cardColumns = 5;
-  numberOfPairs = 10;
+  /*
+  easy:                       medium:               high:
+      cardRows = 3;           cardRows = 4          cardRows = 5
+      cardColumns = 4;        cardColumns = 5       cardColumns = 6
+      numberOfPairs = 6;      numberOfPairs = 10    numberOfPairs = 15
+  * */
+  cardRows = 5;
+  cardColumns = 6;
+  numberOfPairs = 15;
   revealedPairs = 0;
   cards: Card[][] = []
   revealedCards: Card[] = []

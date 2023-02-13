@@ -13,6 +13,12 @@ export class UserService {
     return this.db.object(`users/${uid}`);
   }
 
+  isUserInDb(uid: string): Promise<boolean> {
+    return this.db.database.ref(`users/${uid}`).once("value").then((snapshot) => {
+      return snapshot.val() != null;
+    })
+  }
+
   create(uid: string, user: DbUser): any {
     return this.db.database.ref(`users/${uid}`).set(user);
   }

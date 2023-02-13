@@ -38,13 +38,22 @@ export class AuthService {
   AuthLogin(provider: any) {
     return this.fireAuth.signInWithPopup(provider).then((result) => {
       const user = result.user;
+
       if (user){
-        this.userService.create(user.uid, {
-          email: user.email ?? '',
-          highScore: {}
-        });
+        this.userService.isUserInDb(user.uid).then((exist) => {
+          if (!exist){
+            this.userService.create(user.uid, {
+              email: user.email ?? '',
+              highScore: {
+                easy: 0,
+                medium: 0,
+                hard: 0,
+              }
+            });
+          }
+          this.router.navigate(['/']);
+        })
       }
-      this.router.navigate(['/']);
     }).catch((error) => {
       console.log(error.message);
     })

@@ -18,6 +18,14 @@ export class MainMenuComponent implements OnInit {
     this.router.navigate(['game']).then(noop);
   }
 
+  onSettings(): void {
+    this.router.navigate(['settings']).then(noop);
+  }
+
+  onHighScores(): void {
+    this.router.navigate(['high-scores']).then(noop)
+  }
+
   openLogInForm(): void {
     this.router.navigate(['/login']).then(noop);
   }
