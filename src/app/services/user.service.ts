@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase, AngularFireObject} from '@angular/fire/compat/database';
+import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/compat/database';
 import DbUser from "../models/db-user.model";
+import HighScore from '../models/high-score.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class UserService {
 
   getUserById(uid: string): AngularFireObject<DbUser> {
     return this.db.object(`users/${uid}`);
+  }
+
+  getUsers() {
+    return this.db.list('/users');
   }
 
   isUserInDb(uid: string): Promise<boolean> {
