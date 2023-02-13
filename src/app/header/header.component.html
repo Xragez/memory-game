@@ -1,0 +1,9 @@
+<div class="header">
+    <div  *ngIf="backArrow">
+        <fa-icon class="icon" [icon]="faArrowLeft" (click)="back()"></fa-icon>
+    </div>
+    <div class="account">
+        {{displayName}}
+        <fa-icon class="icon" [icon]="faUser"></fa-icon>
+    </div>
+</div>

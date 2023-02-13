@@ -44,12 +44,11 @@ export class AuthService {
           highScore: {}
         });
       }
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }).catch((error) => {
       console.log(error.message);
     })
   }
-
 
   Logout() {
     return this.fireAuth.signOut().then(() => {

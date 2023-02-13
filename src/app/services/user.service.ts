@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import {AngularFireDatabase, AngularFireObject} from '@angular/fire/compat/database';
 import DbUser from "../models/db-user.model";
 
 @Injectable({
@@ -7,6 +7,10 @@ import DbUser from "../models/db-user.model";
 })
 export class UserService {
   constructor(private db: AngularFireDatabase) {
+  }
+
+  getUserById(uid: string): AngularFireObject<DbUser> {
+    return this.db.object(`users/${uid}`);
   }
 
   create(uid: string, user: DbUser): any {
