@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { AuthService } from '../services/auth.service';
+import {noop} from "rxjs";
 
 @Component({
   selector: 'app-main-menu',
@@ -8,25 +9,34 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-  constructor(private router: Router, private authservice: AuthService) {
-  }
+
+  isLoggedIn: boolean;
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   onStartGame(): void {
-    this.router.navigate(['game']);
+    this.router.navigate(['game']).then(noop);
+  }
+
+  onSettings(): void {
+    this.router.navigate(['settings']).then(noop);
+  }
+
+  onHighScores(): void {
+    this.router.navigate(['high-scores']).then(noop)
   }
 
   openLogInForm(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(noop);
   }
 
   logout(): void {
-    this.authservice.Logout();
+    this.authService.Logout().then(noop);
   }
 
-  isLoggedIn: string | null;
 
   ngOnInit() {
-    this.isLoggedIn = localStorage.getItem("login");
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
 }
