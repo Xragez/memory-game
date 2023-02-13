@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { HeaderComponent } from './header/header.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { HighScoresComponent } from './high-scores/high-scores.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     GameComponent,
     CardComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    HighScoresComponent
   ],
   imports: [
     BrowserModule,
