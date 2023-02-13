@@ -1,22 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {diff} from "ngx-bootstrap/chronos/moment/diff";
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit{
-  /*
-  easy:                       medium:               high:
-      cardRows = 3;           cardRows = 4          cardRows = 5
-      cardColumns = 4;        cardColumns = 5       cardColumns = 6
-      numberOfPairs = 6;      numberOfPairs = 10    numberOfPairs = 15
-  * */
-  cardRows = 5;
-  cardColumns = 6;
-  numberOfPairs = 15;
+  cardRows: number;
+  cardColumns: number;
+  numberOfPairs:number;
   revealedPairs = 0;
   cards: Card[][] = []
   revealedCards: Card[] = []
+  difficulty: string
+  difficultySelected = false
 
   generateCards(): Card[][] {
     let id = 0;
@@ -58,6 +56,30 @@ export class GameComponent implements OnInit{
     }
   }
 
+  setDifficultySettings(difficulty: string): void {
+    this.difficulty = difficulty;
+    this.difficultySelected = true;
+
+    switch (difficulty){
+      case 'easy':
+        this.cardRows = 3
+        this.cardColumns = 4
+        this.numberOfPairs = 6
+        break
+      case 'medium':
+        this.cardRows = 4
+        this.cardColumns = 5
+        this.numberOfPairs = 10
+        break
+      case 'hard':
+        this.cardRows = 5
+        this.cardColumns = 6
+        this.numberOfPairs = 15
+        break
+    }
+    this.cards = this.generateCards();
+  }
+
   checkCards(card1: Card, card2: Card): void {
     setTimeout(() => {
       if (card1.number === card2.number) {
@@ -72,7 +94,6 @@ export class GameComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.cards = this.generateCards();
   }
 }
 
@@ -80,4 +101,8 @@ export interface Card {
   number: number | undefined
   id: number
   state: 'default' | 'flipped' | 'matched';
+}
+
+enum DifficultyLevels {
+  easy, medium, hard
 }
