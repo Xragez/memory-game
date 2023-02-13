@@ -1,21 +1,22 @@
-<app-header [backArrow]=true></app-header>
-<div class="game container" *ngIf="difficultySelected">
-    <div class="cards-row" *ngFor="let row of cards">
-        <div class="cards-column" *ngFor="let card of row">
-            <app-card
-                [cardData]="card"
-                (revealEvent)="onCardReveal($event)">
-            </app-card>
+<div class="page-background">
+    <app-header [backArrow]=true></app-header>
+    <div class="game container" *ngIf="difficultySelected">
+        <div class="cards-row" *ngFor="let row of cards">
+            <div class="cards-column" *ngFor="let card of row">
+                <app-card
+                    [cardData]="card"
+                    (revealEvent)="onCardReveal($event)">
+                </app-card>
+            </div>
         </div>
     </div>
-</div>
-<div *ngIf="!difficultySelected">
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Select difficulty level</h4>
-    </div>
-    <div class="modal-body">
-        <button type="button" class="btn btn-primary" (click)="setDifficultySettings('easy')">Easy</button>
-        <button type="button" class="btn btn-primary" (click)="setDifficultySettings('medium')">Medium</button>
-        <button type="button" class="btn btn-primary" (click)="setDifficultySettings('hard')">Hard</button>
+    <div *ngIf="!difficultySelected" class="level-container">
+        
+        <div class="level-buttons">
+            <h4>Select difficulty level</h4>
+            <button type="button" class="btn level-btn" (click)="setDifficultySettings('easy')">Easy</button>
+            <button type="button" class="btn level-btn" (click)="setDifficultySettings('medium')">Medium</button>
+            <button type="button" class="btn level-btn" (click)="setDifficultySettings('hard')">Hard</button>
+        </div>
     </div>
 </div>

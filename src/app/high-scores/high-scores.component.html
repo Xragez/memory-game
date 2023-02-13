@@ -1,34 +1,62 @@
-<table id="easy">
-    <tr>
-        <th>User</th>
-        <th>Score</th>
-    </tr>
-    <tr *ngFor="let user of usersEasy | async | slice:0:5">
-        <td>{{ user.email }}</td>
-        <td>{{ user.highScore.easy }}</td>
-    </tr>
-</table>
+<div class="page-background">
+    <app-header [backArrow]=true></app-header>
+    <h1 class="title">TOP SCORS</h1>
+    <div class="tb-container">
+        <div class="tb">
+            <h5>Level easy</h5>
+            <table class="table" id="easy">
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of usersEasy | async | slice:0:5">
+                    <th scope="row">{{ user.email }}</th>
+                    <td>{{ user.highScore.easy }}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
 
-<table id="medium">
-    <tr>
-        <th>User</th>
-        <th>Score</th>
-    </tr>
-    <tr *ngFor="let user of usersMedium | async | slice:0:5">
-        <td>{{ user.email }}</td>
-        <td>{{ user.highScore.medium }}</td>
-    </tr>
-</table>
+        <div class="tb">
+            <h5>Level medium</h5>
+            <table class="table" id="medium">
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of usersMedium | async | slice:0:5">
+                    <th scope="row">{{ user.email }}</th>
+                    <td>{{ user.highScore.medium }}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
 
-<table id="hard">
-    <tr>
-        <th>User</th>
-        <th>Score</th>
-    </tr>
-    <tr *ngFor="let user of usersHard | async | slice:0:5">
-        <td>{{ user.email }}</td>
-        <td>{{ user.highScore.hard }}</td>
-    </tr>
-</table>
+        <div class="tb">
+            <h5>Level hard</h5>
+            <table class="table" id="hard">
+                <thead>
+                  <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of usersHard | async | slice:0:5">
+                    <th scope="row">{{ user.email }}</th>
+                    <td>{{ user.highScore.hard }}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
 
 

@@ -62,9 +62,9 @@ export class GameComponent implements OnInit{
 
     switch (difficulty){
       case 'easy':
-        this.cardRows = 3
+        this.cardRows = 4
         this.cardColumns = 4
-        this.numberOfPairs = 6
+        this.numberOfPairs = 8
         break
       case 'medium':
         this.cardRows = 4

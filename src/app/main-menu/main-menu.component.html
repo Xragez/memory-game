@@ -1,30 +1,32 @@
-<app-header></app-header>
-<div class="menu container">
-  <button
-  type="button"
-  class="menu-item btn btn-outline-dark"
-  (click)="onStartGame()">
-    Start Game
-  </button>
-  <button
-          type="button"
-          class="menu-item btn btn-outline-dark"
-          (click)="onHighScores()">
-    High Scores
-  </button>
-  <button
-    *ngIf="!isLoggedIn"
-    type="button"
-    class="menu-item btn btn-outline-dark"
-    (click)="openLogInForm()">
-    Log In
-  </button>
-  <button
-    *ngIf="isLoggedIn"
-    type="button"
-    class="menu-item btn btn-outline-dark"
-    (click)="logout()">
-    Log Out
-  </button>
-</div>
 
+<div class="page-background">
+  <app-header></app-header>
+  <div class="menu container">
+    <button
+    type="button"
+    class="menu-item btn btn-outline-dark"
+    (click)="onStartGame()">
+      Start Game
+    </button>
+    <button
+            type="button"
+            class="menu-item btn btn-outline-dark"
+            (click)="onHighScores()">
+      High Scores
+    </button>
+    <button
+      *ngIf="!isLoggedIn"
+      type="button"
+      class="menu-item btn btn-outline-dark"
+      (click)="openLogInForm()">
+      Log In
+    </button>
+    <button
+      *ngIf="isLoggedIn"
+      type="button"
+      class="menu-item btn btn-outline-dark"
+      (click)="logout()">
+      Log Out
+    </button>
+  </div>
+</div>
