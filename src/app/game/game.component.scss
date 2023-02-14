@@ -5,9 +5,16 @@
     flex-direction: column;
 }
 
+.score {
+    color: #d9c450;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 .game {
     padding: 6em 5em;
-    margin-top: 60px;
+    margin-top: 24px;
     max-width: fit-content;
     background-image: url("/assets/img/bgs.png");
     background-repeat: no-repeat;
