@@ -1,7 +1,8 @@
 <div class="page-background">
     <app-header [backArrow]=true></app-header>
-    <div class="score" *ngIf="isDifficultySelected && !endGameScreen">Score: {{score}}</div>
+    
     <div class="game container" *ngIf="isDifficultySelected">
+        <div class="score" *ngIf="isDifficultySelected && !endGameScreen">Score: {{score}}</div>
         <div *ngIf="!endGameScreen">
             <div class="cards-row" *ngFor="let row of cards" >
                 <div class="cards-column" *ngFor="let card of row">
