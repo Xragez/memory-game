@@ -1,17 +1,23 @@
 <div class="page-background">
     <app-header [backArrow]=true></app-header>
-    <div class="game container" *ngIf="difficultySelected">
-        <div class="cards-row" *ngFor="let row of cards">
-            <div class="cards-column" *ngFor="let card of row">
-                <app-card
-                    [cardData]="card"
-                    (revealEvent)="onCardReveal($event)">
-                </app-card>
+    <div class="game container" *ngIf="isDifficultySelected">
+        <div *ngIf="!endGameScreen">
+            <div class="cards-row" *ngFor="let row of cards" >
+                <div class="cards-column" *ngFor="let card of row">
+                    <app-card
+                        [cardData]="card"
+                        (revealEvent)="onCardReveal($event)">
+                    </app-card>
+                </div>
             </div>
         </div>
+        <div *ngIf="endGameScreen">
+            <h4>Congratulations</h4>
+            <h5>Your Score: {{score}}</h5>
+            <button type="button" class="btn level-btn" (click)="back()">Ok</button>
+        </div>
     </div>
-    <div *ngIf="!difficultySelected" class="level-container">
-        
+    <div *ngIf="!isDifficultySelected" class="level-container">
         <div class="level-buttons">
             <h4>Select difficulty level</h4>
             <button type="button" class="btn level-btn" (click)="setDifficultySettings('easy')">Easy</button>

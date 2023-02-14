@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from '@angular/fire/compat/database';
 import DbUser from "../models/db-user.model";
 import HighScore from '../models/high-score.model';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ export class UserService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  getUserById(uid: string): AngularFireObject<DbUser> {
-    return this.db.object(`users/${uid}`);
+  getUserById(uid: string): Observable<DbUser> {
+    // @ts-ignore
+    return this.db.object(`users/${uid}`).valueChanges();
   }
 
   getUsers() {

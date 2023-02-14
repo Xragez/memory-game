@@ -10,7 +10,6 @@
     .icon {
         font-size: 2rem;
         margin: 8px 24px;
-        
 
         &:hover {
             cursor: pointer;
@@ -18,8 +17,7 @@
     }
 
     .account {
-        &:hover {
-            cursor: pointer;
-        }
+        font-size: 2rem;
+        margin: 8px 24px;
     }
 }
