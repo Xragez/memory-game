@@ -20,6 +20,7 @@ export class GameComponent implements OnInit{
   pairMatchScore = 200;
   endGameScreen = false;
   highScore: number;
+  numberOfAttempts = 0;
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -56,6 +57,7 @@ export class GameComponent implements OnInit{
       this.revealedCards.push(card)
 
       if (this.revealedCards.length > 1) {
+        this.numberOfAttempts += 1;
         this.checkCards(this.revealedCards[0], this.revealedCards[1])
       }
 
