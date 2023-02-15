@@ -10,7 +10,7 @@ const routes: Routes = [
     {path: '', component:MainMenuComponent, canActivate: [AuthGuard] },
     {path: 'game', component: GameComponent, canActivate: [AuthGuard] },
     {path: 'login', component: LoginComponent},
-    {path: 'high-scores', component: HighScoresComponent}
+    {path: 'high-scores', component: HighScoresComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
