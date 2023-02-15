@@ -8,11 +8,6 @@
     background-image: url("/assets/img/karta.png");
     transform-style: preserve-3d;
 
-    .back {
-        transform: rotateY(0deg);
-        backface-visibility: hidden;
-    }
-
     .front {
         transform: rotateY(180deg);
         backface-visibility: hidden;
